@@ -47,9 +47,9 @@ public class PuzzleScript : MonoBehaviour
 
 	void Update()
 	{
-        if (isGameActive)
+        if (isGameActive) // Пока игра активна
         {
-			if (isWinner)
+			if (isWinner) // Если пазл правильно собран
 			{
 				if (CheckPuzzle(0.1f) == _puzzle.Count)
 				{
@@ -109,7 +109,7 @@ public class PuzzleScript : MonoBehaviour
 		return i;
 	}
 
-	public void Clear()
+	public void Clear() // Очистка
 	{
 		isWinner = false;
 		puzzleCounter = 0;

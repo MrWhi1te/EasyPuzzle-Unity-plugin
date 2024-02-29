@@ -7,7 +7,7 @@ public class MenuScripts : MonoBehaviour
     public PuzzleScript PS;
     public SaveScript SV;
 
-    public GameObject puzzleObj; //
+    public GameObject puzzleObj; // 
     public GameObject puzzleDoneObj; //
     public GameObject puzzleAllDoneObj; //
     public GameObject mainMenuObj; //
@@ -38,7 +38,7 @@ public class MenuScripts : MonoBehaviour
         }
     }
 
-    public void ChoicePuzzle(int index)
+    public void ChoicePuzzle(int index) // Выбор пазлов
     {
         if(PS.puzzles[index].puzzleActive)
         {
@@ -48,7 +48,7 @@ public class MenuScripts : MonoBehaviour
         SV.SV.puzzleNumber = index;
     }
 
-    public void ChoicePuzzleCount(int index)
+    public void ChoicePuzzleCount(int index) // Выбор количества пазлов 
     {
         if(index == 0) { PS.columns = 2; PS.lines = 2; }
         else if (index == 1) { PS.columns = 3; PS.lines = 3; }
@@ -60,12 +60,12 @@ public class MenuScripts : MonoBehaviour
         PS.StartGeneratePuzzle();
     }
 
-    public void CancelChoicePuzzleCount()
+    public void CancelChoicePuzzleCount() // Отмена выбора
     {
         puzzleCountObj.SetActive(false);
     }
 
-    public void ExitMenu()
+    public void ExitMenu() // Выход в меню
     {
         OpenPuzzlePan();
         puzzleDoneObj.SetActive(false);
@@ -75,12 +75,12 @@ public class MenuScripts : MonoBehaviour
         mainMenuObj.SetActive(true);
     }
 
-    public void ResetPuzzle()
+    public void ResetPuzzle() // Сброс пазлов
     {
         PS.Clear(); PS.StartGeneratePuzzle();
     }
 
-    public void NextPuzzle()
+    public void NextPuzzle() // Следующий пазл
     {
         PS.puzzleNumber++;
         if(PS.puzzleNumber >= PS.puzzles.Count)
@@ -91,14 +91,14 @@ public class MenuScripts : MonoBehaviour
         puzzleDoneObj.SetActive(false);
     }
 
-    public void ResumePuzzle()
+    public void ResumePuzzle() // Продолжить сборку
     {
         resumePuzzle.SetActive(false);
         PS.puzzleNumber = SV.SV.puzzleNumber;
         ChoicePuzzleCount(SV.SV.puzzleCount);
     }
 
-    void OpenPuzzlePan()
+    void OpenPuzzlePan() //
     {
         if (!openAllPuzzle)
         {
@@ -106,10 +106,8 @@ public class MenuScripts : MonoBehaviour
             {
                 for (int i = 0; i < PS.puzzles.Count; i++)
                 {
-                    if (PS.puzzles[i].puzzleActive)
-                    {
-                        PS.puzzles[i].puzzleBttn.transform.Find("Open").GetComponentInChildren<Image>().color = new Color32(0, 0, 0, 0);
-                    }
+                    if (!PS.puzzles[i].puzzleActive) PS.puzzles[i].puzzleBttn.transform.Find("Open").GetComponentInChildren<Image>().color = new Color32(0, 0, 0, 210);
+                    else PS.puzzles[i].puzzleBttn.transform.Find("Open").GetComponentInChildren<Image>().color = new Color32(0, 0, 0, 0);
                 }
             }
         }
